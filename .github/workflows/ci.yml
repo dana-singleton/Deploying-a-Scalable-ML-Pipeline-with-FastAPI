@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.8"  # match environment.yml
+          python-version: "3.10"  # match environment.yml
 
       - name: Install dependencies
         run: |
