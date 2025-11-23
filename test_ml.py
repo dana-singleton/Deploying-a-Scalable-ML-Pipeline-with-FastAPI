@@ -1,28 +1,75 @@
 import pytest
-# TODO: add necessary import
+# Completed: add necessary import
+import pandas as pd
+from ml.data import process_data
+from ml.model import train_model, inference
 
-# TODO: implement the first test. Change the function name and input as needed
+# Completed: implement the first test. Change the function name and input as needed
 def test_one():
     """
-    # add description for the first test
+    # Test that process_data returns X, y, encoder, lb with correct lengths.
     """
-    # Your code here
-    pass
+    # Code for test_one below:
+    sample = pd.DataFrame({
+        "workclass": ["Private", "Self-emp-not-inc"],
+        "education": ["Bachelors", "HS-grad"],
+        "marital-status": ["Never-married", "Married-civ-spouse"],
+        "occupation": ["Adm-clerical", "Exec-managerial"],
+        "relationship": ["Not-in-family", "Husband"],
+        "race": ["White", "White"],
+        "sex": ["Male", "Male"],
+        "native-country": ["United-States", "United-States"],
+        "salary": ["<=50K", ">50K"],
+    })
+
+    cat_features = [
+        "workclass", "education", "marital-status", "occupation",
+        "relationship", "race", "sex", "native-country"
+    ]
+
+    X, y, encoder, lb = process_data(
+        sample, categorical_features=cat_features, label="salary", training=True
+    )
+
+    assert len(X) == 2
+    assert len(y) == 2
+    assert encoder is not None
+    assert lb is not None
 
 
-# TODO: implement the second test. Change the function name and input as needed
+# Completed: implement the second test. Change the function name and input as needed
 def test_two():
     """
-    # add description for the second test
+    # Test that train_model returns a fitted model.
     """
-    # Your code here
-    pass
+    # Code for test_two below:
+    import numpy as np
+    from ml.model import train_model
+
+    X = np.array([[0, 1], [1, 0]])
+    y = np.array([0, 1])
+
+    model = train_model(X, y)
+
+    assert hasattr(model, "predict")
+    preds = model.predict(X)
+    assert len(preds) == 2
 
 
-# TODO: implement the third test. Change the function name and input as needed
+# Completed: implement the third test. Change the function name and input as needed
 def test_three():
     """
-    # add description for the third test
+    # Test that inference returns predictions of the expected length.
     """
-    # Your code here
-    pass
+    # Code for test_three below:
+    import numpy as np
+    from ml.model import train_model, inference
+
+    X = np.array([[0, 1], [1, 0]])
+    y = np.array([1, 0])
+
+    model = train_model(X, y)
+    preds = inference(model, X)
+
+    assert len(preds) == 2
+    assert preds.dtype in [np.int64, np.int32, np.float64, np.float32]
