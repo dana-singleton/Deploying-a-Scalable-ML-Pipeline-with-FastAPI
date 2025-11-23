@@ -80,14 +80,14 @@ def save_model(model, path):
     """
     # Completed: implement the function (Implemented - DS)
     with open(path, "wb") as f:
-    pickle.dump(model, f)
+        pickle.dump(model, f)
 
 
 def load_model(path):
     """ Loads pickle file from `path` and returns it."""
     # Completed: implement the function (Implemented - DS)
     with open(path, "rb") as f:
-    model = pickle.load(f)
+        model = pickle.load(f)
     return model
 
 
