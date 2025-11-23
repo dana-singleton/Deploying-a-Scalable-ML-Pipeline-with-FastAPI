@@ -1,11 +1,10 @@
-import os
-
 import pandas as pd
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
 from ml.data import apply_label, process_data
 from ml.model import inference, load_model
+
 
 # DO NOT MODIFY
 class Data(BaseModel):
@@ -26,17 +25,20 @@ class Data(BaseModel):
     hours_per_week: int = Field(..., example=40, alias="hours-per-week")
     native_country: str = Field(..., example="United-States", alias="native-country")
 
+
 # Completed: entered paths for saved encoder and saved model.
 encoder = load_model("model/encoder.pkl")
 model = load_model("model/model.pkl")
 
+
 # Completed: create a RESTful API using FastAPI
-app = FastAPI() # updated code here for FastAPI
+app = FastAPI()  # updated code here for FastAPI
+
 
 # Completed: create a GET on the root giving a welcome message
 @app.get("/")
 async def get_root():
-    """ Say hello!"""
+    """Say hello!"""
     # added my code here
     return {"message": "Welcome to the Census Income Prediction API!"}
 
