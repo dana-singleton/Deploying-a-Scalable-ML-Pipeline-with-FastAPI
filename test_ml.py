@@ -1,8 +1,6 @@
-import pytest
-# Completed: add necessary import
 import pandas as pd
 from ml.data import process_data
-from ml.model import train_model, inference
+
 
 # Completed: implement the first test. Change the function name and input as needed
 def test_one():

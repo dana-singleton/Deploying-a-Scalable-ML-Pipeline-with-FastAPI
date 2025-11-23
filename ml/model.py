@@ -4,6 +4,7 @@ from ml.data import process_data
 # Completed: add necessary import (Added - DS)
 from sklearn.ensemble import RandomForestClassifier
 
+
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
     """
@@ -24,7 +25,6 @@ def train_model(X_train, y_train):
     model = RandomForestClassifier(random_state=42)
     model.fit(X_train, y_train)
     return model
-
 
 
 def compute_model_metrics(y, preds):
@@ -91,7 +91,6 @@ def load_model(path):
     return model
 
 
-
 def performance_on_categorical_slice(
     data, column_name, slice_value, categorical_features, label, encoder, lb, model
 ):
@@ -134,11 +133,11 @@ def performance_on_categorical_slice(
     # If no rows match the slice, return zeros to avoid breaking
     if data_slice.empty:
         return 0.0, 0.0, 0.0
-    
+
     # Completed: implement the function (Implemented - DS)
     X_slice, y_slice, _, _ = process_data(
         # your code here
-        # for input data, use data in column given as "column_name", with the slice_value 
+        # for input data, use data in column given as "column_name", with the slice_value
         # use training = False
         data_slice,
         categorical_features=categorical_features,
